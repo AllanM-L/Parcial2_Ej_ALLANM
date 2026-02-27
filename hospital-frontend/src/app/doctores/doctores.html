@@ -1,0 +1,33 @@
+<h2>Doctores</h2>
+
+<form (ngSubmit)="agregarDoctor()">
+  <input type="text" placeholder="Nombre" [(ngModel)]="nuevoDoctor.nombre" name="nombre" required>
+  <input type="text" placeholder="Apellido" [(ngModel)]="nuevoDoctor.apellido" name="apellido" required>
+  <input type="text" placeholder="Especialidad" [(ngModel)]="nuevoDoctor.especialidad" name="especialidad" required>
+  <input type="text" placeholder="Teléfono" [(ngModel)]="nuevoDoctor.telefono" name="telefono" required>
+  <button type="submit">Agregar</button>
+</form>
+
+<hr>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Especialidad</th>
+    <th>Teléfono</th>
+    <th>Acción</th>
+  </tr>
+
+  <tr *ngFor="let d of doctores">
+    <td>{{d.doctorId}}</td>
+    <td>{{d.nombre}}</td>
+    <td>{{d.apellido}}</td>
+    <td>{{d.especialidad}}</td>
+    <td>{{d.telefono}}</td>
+    <td>
+      <button (click)="eliminarDoctor(d.doctorId)">Eliminar</button>
+    </td>
+  </tr>
+</table>

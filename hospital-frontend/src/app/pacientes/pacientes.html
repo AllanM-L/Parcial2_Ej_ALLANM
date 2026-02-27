@@ -1,0 +1,33 @@
+<h2>Pacientes</h2>
+
+<form (ngSubmit)="agregarPaciente()">
+  <input type="text" placeholder="Nombre" [(ngModel)]="nuevoPaciente.nombre" name="nombre" required>
+  <input type="text" placeholder="Apellido" [(ngModel)]="nuevoPaciente.apellido" name="apellido" required>
+  <input type="date" [(ngModel)]="nuevoPaciente.fechaNacimiento" name="fechaNacimiento" required>
+  <input type="text" placeholder="Teléfono" [(ngModel)]="nuevoPaciente.telefono" name="telefono" required>
+  <button type="submit">Agregar</button>
+</form>
+
+<hr>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Fecha</th>
+    <th>Teléfono</th>
+    <th>Acción</th>
+  </tr>
+
+  <tr *ngFor="let p of pacientes">
+    <td>{{p.pacienteId}}</td>
+    <td>{{p.nombre}}</td>
+    <td>{{p.apellido}}</td>
+    <td>{{p.fechaNacimiento | date}}</td>
+    <td>{{p.telefono}}</td>
+    <td>
+      <button (click)="eliminarPaciente(p.pacienteId)">Eliminar</button>
+    </td>
+  </tr>
+</table>

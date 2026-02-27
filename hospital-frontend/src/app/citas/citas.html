@@ -1,0 +1,102 @@
+<div class="container mt-4">
+
+  <h2 class="text-primary mb-4">Gestión de Citas Médicas</h2>
+
+  <!-- FORMULARIO -->
+  <div class="card p-4 shadow mb-4">
+    <form (ngSubmit)="guardarCita()">
+
+      <div class="row mb-3">
+        <div class="col">
+          <label>Paciente</label>
+          <select class="form-select"
+                  [(ngModel)]="nuevaCita.pacienteId"
+                  name="pacienteId" required>
+            <option value="">Seleccione</option>
+            <option *ngFor="let p of pacientes" [value]="p.pacienteId">
+              {{p.nombre}} {{p.apellido}}
+            </option>
+          </select>
+        </div>
+
+        <div class="col">
+          <label>Doctor</label>
+          <select class="form-select"
+                  [(ngModel)]="nuevaCita.doctorId"
+                  name="doctorId" required>
+            <option value="">Seleccione</option>
+            <option *ngFor="let d of doctores" [value]="d.doctorId">
+              {{d.nombre}} {{d.apellido}} - {{d.especialidad}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <label>Fecha</label>
+          <input type="datetime-local"
+                 class="form-control"
+                 [(ngModel)]="nuevaCita.fechaCita"
+                 name="fechaCita" required>
+        </div>
+
+        <div class="col">
+          <label>Motivo</label>
+          <input type="text"
+                 class="form-control"
+                 [(ngModel)]="nuevaCita.motivo"
+                 name="motivo" required>
+        </div>
+      </div>
+
+      <button class="btn btn-success me-2">
+        {{ modoEdicion ? 'Actualizar' : 'Guardar' }}
+      </button>
+
+      <button type="button"
+              class="btn btn-secondary"
+              (click)="resetFormulario()">
+        Cancelar
+      </button>
+
+    </form>
+  </div>
+
+  <!-- TABLA -->
+  <div class="card shadow p-3">
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Paciente</th>
+          <th>Doctor</th>
+          <th>Fecha</th>
+          <th>Motivo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let c of citas">
+          <td>{{c.citaId}}</td>
+          <td>{{c.paciente.nombre}} {{c.paciente.apellido}}</td>
+          <td>{{c.doctor.nombre}} {{c.doctor.apellido}}</td>
+          <td>{{c.fechaCita | date:'short'}}</td>
+          <td>{{c.motivo}}</td>
+          <td>
+            <button class="btn btn-warning btn-sm me-2"
+                    (click)="editarCita(c)">
+              Editar
+            </button>
+            <button class="btn btn-danger btn-sm"
+                    (click)="eliminarCita(c.citaId)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

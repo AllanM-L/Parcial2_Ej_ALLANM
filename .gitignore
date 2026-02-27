@@ -1,0 +1,21 @@
+# Angular
+node_modules/
+dist/
+.angular/
+coverage/
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+
+# Visual Studio
+.vs/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
